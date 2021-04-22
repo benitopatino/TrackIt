@@ -181,6 +181,10 @@
     <Compile Include="Migrations\202104220344539_AddTicketModel.Designer.cs">
       <DependentUpon>202104220344539_AddTicketModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104220348231_AddProjectMembersModel.cs" />
+    <Compile Include="Migrations\202104220348231_AddProjectMembersModel.Designer.cs">
+      <DependentUpon>202104220348231_AddProjectMembersModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -275,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104220344539_AddTicketModel.resx">
       <DependentUpon>202104220344539_AddTicketModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104220348231_AddProjectMembersModel.resx">
+      <DependentUpon>202104220348231_AddProjectMembersModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

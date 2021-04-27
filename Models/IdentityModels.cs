@@ -22,6 +22,13 @@ namespace TrackIt.Models
     {
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<ProjectMember> ProjectMembers{ get; set; }
+        public DbSet<TicketType> TicketTypes { get; set; }
+        public DbSet<Resolution> Resolutions { get; set; }
+        public DbSet<Status> Status { get; set; }
+        public DbSet<Priority> Priorities { get; set; }
+        public DbSet<Project> Projects{ get; set; }
+
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

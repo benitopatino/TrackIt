@@ -17,12 +17,12 @@ namespace TrackIt.Models
         public Status Status { get; set; }
         public byte StatusId { get; set; }
         public DateTime DateCreated { get; set; }
-        public DateTime DateClosed { get; set; }
-        public DateTime DateDue { get; set; }
+        public DateTime? DateClosed { get; set; }
+        public DateTime? DateDue { get; set; }
         public TicketType TicketType { get; set; }
         public byte TicketTypeId { get; set; }
         public Resolution Resolution { get; set; }
-        public byte ResolutionId { get; set; }
+        public byte? ResolutionId { get; set; }
         public Project Project { get; set; }
         public string ProjectId { get; set; }
 

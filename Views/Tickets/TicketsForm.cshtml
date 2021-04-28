@@ -1,4 +1,5 @@
-﻿
+﻿@model TrackIt.ViewModels.TicketFormViewModel
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,33 +8,17 @@
 
 @using (Html.BeginForm("Save", "Tickets"))
 {
-    <div class="form-group">
-        @Html.LabelFor(m => m.Movie.Name)
-        @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Movie.Name)
-    </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.ReleaseDate)
-        @Html.TextBoxFor(m => m.Movie.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Movie.ReleaseDate)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Movie.GenreId)
-        @Html.DropDownListFor(m => m.Movie.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Movie.GenreId)
+        @Html.LabelFor(t => t.Ticket.Title)
+        @Html.TextBoxFor(t => t.Ticket.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(t => t.Ticket.Title)
     </div>
 
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Movie.NumInStock)
-        @Html.TextBoxFor(m => m.Movie.NumInStock, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Movie.NumInStock)
 
-    </div>
 
-    @Html.HiddenFor(m => m.Movie.Id)
+    @Html.HiddenFor(t => t.Ticket.Title)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }

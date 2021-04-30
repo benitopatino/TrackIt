@@ -42,10 +42,6 @@ namespace TrackIt.Controllers
                 Projects = _context.Projects.ToList()
             };
 
-            // SET UUID ID FOR Ticket
-            Guid g = Guid.NewGuid();
-            viewModel.Ticket.Id = g.ToString();
-
             // Set View Title
             ViewBag.Title = "New Ticket";
 
@@ -55,6 +51,7 @@ namespace TrackIt.Controllers
         public ActionResult Save(Ticket ticket)
         {
 
+            // Return back to the TicketsForm if the model is invalid
             if (!ModelState.IsValid)
             {
                 var viewModel = new TicketFormViewModel()
@@ -67,6 +64,8 @@ namespace TrackIt.Controllers
                     Owners = _context.Users.ToList(),
                     Projects = _context.Projects.ToList()
                 };
+
+                return View("TicketsForm", viewModel);
             }
 
             // Create a new Ticket
@@ -81,6 +80,7 @@ namespace TrackIt.Controllers
 
                 // save ticket
                 _context.Tickets.Add(ticket);
+
             }
             else 
             {
@@ -102,7 +102,7 @@ namespace TrackIt.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index", "Tickets");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

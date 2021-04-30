@@ -76,7 +76,7 @@ namespace TrackIt.Controllers
 
                 // Set UUID
                 Guid g = Guid.NewGuid();
-                ticket.Id = g.ToString();
+                ticket.Id = g.ToString("N");
 
                 // save ticket
                 _context.Tickets.Add(ticket);

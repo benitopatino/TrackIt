@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TrackIt.Models.Project>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Projects</h2>
+
+@foreach (var p in Model)
+{
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2>@p.Name</h2>
+
+            <h6>Status: <small>@p.ProjectStatus.Name</small></h6>
+        </div>
+    </div>
+}
+

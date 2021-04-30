@@ -23,7 +23,7 @@ namespace TrackIt.Models
         
         public Status Status { get; set; }
 
-        [Display(Name = "Priority")]
+        [Display(Name = "Status")]
         public byte StatusId { get; set; }
         
         public DateTime DateCreated { get; set; }

@@ -50,6 +50,12 @@
         @Html.DropDownListFor(t => t.Ticket.ProjectId, new SelectList(Model.Projects, "Id", "Name"), "Select Project", new { @class = "form-control" })
         @Html.ValidationMessageFor(t => t.Ticket.ProjectId)
     </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(t => t.Ticket.DateDue)
+        @Html.TextBoxFor(t => t.Ticket.DateDue, "{0:d MMM yyyy}", new { @class = "form-control", id = "datepicker" })
+        @Html.ValidationMessageFor(t => t.Ticket.DateDue)
+    </div>
 
 
 
@@ -57,4 +63,23 @@
     @Html.HiddenFor(t => t.Ticket.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
+
+    <!--DATE PICKER JQUERY-->
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    @section scripts{
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#datepicker").datepicker({
+                    dateFormat: "mm-dd-yy",
+                    changemonth: true,
+                    changeyear: true
+                });
+            });
+        </script>
+
+    }
+
+
+
 }

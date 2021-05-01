@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrackIt.Models.Project>
+﻿@model TrackIt.ViewModels.ProjectListViewModel
 
 @{
     ViewBag.Title = "List";
@@ -7,14 +7,32 @@
 
 <h2>Projects</h2>
 
-@foreach (var p in Model)
+@foreach (var project in Model.Projects)
 {
+
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h2>@p.Name</h2>
+            <h2>@project.Name</h2>
 
-            <h6>Status: <small>@p.ProjectStatus.Name</small></h6>
+            <h6>Status: <small>@project.ProjectStatus.Name</small></h6>
+            
+            @{ 
+                var a = Model.TicketStats[project.Id];
+
+            }
+            @foreach(var k in a.Values)
+            {
+                    <p>@k</p>
+            }
+
+            @{ 
+                <p>@a.Keys[0]</p>
+            }
+
+
         </div>
     </div>
+
+
 }
 

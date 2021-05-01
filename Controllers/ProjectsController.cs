@@ -28,29 +28,38 @@ namespace TrackIt.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            var projects
-         
+
+            var projects = _context.Projects.Include(s => s.ProjectStatus).ToList();
+
             var viewModel = new ProjectListViewModel()
             {
-                Projects = _context.Projects.ToList(),
-                TicketStatusCount = GetTicketStatusCount
+                Projects = projects,
+                TicketStats = GetTicketStats(projects)
 
+            };
+
+            return View("List", viewModel);
         }
-            return View("List", projects);
-        }
 
 
-        private Dictionary<string, int> GetTicketStatusCount(string projectId)
+        private Dictionary<string, Dictionary<string, int>> GetTicketStats(IEnumerable<Project> projects)
         {
 
             IEnumerable<Status> statusList = _context.Status.ToList();
-            Dictionary<string, int> tempDict = new Dictionary<string, int>();
+            Dictionary<string, Dictionary<string, int>> tempDict = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, int> statusStats = new Dictionary<string, int>();
 
-            foreach(var s in statusList)
+            foreach (var p in projects)
             {
+                foreach (var s in statusList)
+                {
+                    string test = s.Name;
+                    int count = _context.Tickets.Where(t => t.StatusId == s.Id).Where(t => t.ProjectId == p.Id).ToList().Count;
+                    statusStats.Add(s.Name, count);
+                }
 
-                int count = _context.Tickets.Where(t => t.ProjectId == projectId).ToList().Count;
-                tempDict.Add(s.Name, count);
+                tempDict.Add(p.Id, statusStats);
+                statusStats.Clear();
             }
 
             return tempDict;

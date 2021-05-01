@@ -9,7 +9,7 @@ namespace TrackIt.ViewModels
     public class ProjectListViewModel
     {
         public IEnumerable<Project> Projects{ get; set; }
-        public Dictionary<string, int> TicketStatusCount { get; set; }
+        public Dictionary<string, Dictionary<string, int>> TicketStats { get; set; }
 
     }
 }

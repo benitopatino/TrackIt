@@ -5,34 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Projects</h2>
+<h1 class="text-lg-center">Projects</h1>
 
 @foreach (var project in Model.Projects)
 {
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h2 class="text-center">@project.Name</h2>
 
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h2>@project.Name</h2>
-
-            <h6>Status: <small>@project.ProjectStatus.Name</small></h6>
-            
-            @{ 
-                var a = Model.TicketStats[project.Id];
-
-            }
-            @foreach(var k in a.Values)
-            {
-                    <p>@k</p>
-            }
-
-            @{ 
-                <p>@a.Keys[0]</p>
-            }
-
-
+        <h6>Status: <small>@project.ProjectStatus.Name</small></h6>
+        <div class="d-flex justify-content-around">
+            <div><p>Open: @Model.TicketStats[project.Id]["Open"]</p> </div>
+            <div><p>In Progress: @Model.TicketStats[project.Id]["In Progress"]</p> </div>
+            <div><p>Closed: @Model.TicketStats[project.Id]["Closed"]</p> </div>
+            <div><p>Resolved: @Model.TicketStats[project.Id]["Resolved"]</p></div>
         </div>
     </div>
-
-
+    <p class="lead text-center">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Open Project</a>
+    </p>
+</div>
 }
 

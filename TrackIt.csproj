@@ -236,6 +236,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ProjectListViewModel.cs" />
     <Compile Include="ViewModels\TicketFormViewModel.cs" />
+    <Compile Include="ViewModels\TicketsListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -442,6 +443,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Tickets\TicketsForm.cshtml" />
     <Content Include="Views\Projects\List.cshtml" />
+    <Content Include="Views\Tickets\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

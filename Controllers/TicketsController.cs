@@ -23,9 +23,18 @@ namespace TrackIt.Controllers
         }
 
         // GET: Tickets
-        public ActionResult Index()
+        // Cutom Route
+        [Route("projects/{projectId}/")]
+        public ActionResult Index(string projectId)
         {
-            return View();
+            var tickets = _context.Tickets.Where(t => t.ProjectId == projectId);
+            var viewModel = new TicketsListViewModel() {
+                Tickets = tickets,
+                ProjectName = _context.Projects.Single(p => p.Id == projectId).Name,
+                TicketStatusCount = GetTicketsStatusCount(tickets)
+            };
+
+            return View("List",viewModel);
         }
 
        // POST: Ticket
@@ -104,5 +113,22 @@ namespace TrackIt.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
+        
+
+        private Dictionary<string, int> GetTicketsStatusCount(IEnumerable<Ticket> tickets)
+        {
+
+            IEnumerable<Status> statusList = _context.Status.ToList();
+            Dictionary<string, int> tempDict = new Dictionary<string, int>();
+            foreach(var s in statusList)
+            {
+                string testName = s.Name;
+                int count = tickets.Where(t => t.StatusId == s.Id).ToList().Count;
+                tempDict.Add(testName, count);
+            }
+
+            return tempDict;
+        }
+
     }
 }

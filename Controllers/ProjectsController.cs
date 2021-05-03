@@ -46,7 +46,11 @@ namespace TrackIt.Controllers
         {
 
             IEnumerable<Status> statusList = _context.Status.ToList();
+
+            // PROJECT ID , <STATUS NAME, COUNT>
             Dictionary<string, Dictionary<string, int>> tempDict = new Dictionary<string, Dictionary<string, int>>();
+
+            // TEMP 
             Dictionary<string, int> statusStats = new Dictionary<string, int>();
 
             foreach (var p in projects)
@@ -58,7 +62,7 @@ namespace TrackIt.Controllers
                     statusStats.Add(s.Name, count);
                 }
 
-                tempDict.Add(p.Id, statusStats);
+                tempDict.Add(p.Id, new Dictionary<string, int>(statusStats));
                 statusStats.Clear();
             }
 

@@ -6,3 +6,48 @@
 
 <h2>@Model.ProjectName</h2>
 
+<table id="table_id" class="table table-striped table-hover nowrap table-responsive-lg">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Ticket Type</th>
+            <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Date Created</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model.Tickets)
+        {
+            <tr class="table-light">
+                <td>5</td>
+                <td>@t.Title</td>
+                <td>@t.Status.Name</td>
+                <td>@t.Priority.Name</td>
+                <td>@t.TicketType.Name</td>
+                <td>@t.Description</td>
+                <td>@t.DateDue.Value.ToString("MM-dd-yyyy")</td>
+                <td>@t.DateCreated.ToShortDateString()</td>
+
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
+
+}

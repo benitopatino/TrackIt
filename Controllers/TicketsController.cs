@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using TrackIt.ViewModels;
 using TrackIt.Models;
+using System.Data.Entity;
+
+
 namespace TrackIt.Controllers
 {
     public class TicketsController : Controller
@@ -27,7 +30,11 @@ namespace TrackIt.Controllers
         [Route("projects/{projectId}/")]
         public ActionResult Index(string projectId)
         {
-            var tickets = _context.Tickets.Where(t => t.ProjectId == projectId);
+            var tickets = _context.Tickets
+                .Include(t => t.Priority)
+                .Include(t => t.Status)
+                .Include(t => t.TicketType)
+                .Where(t => t.ProjectId == projectId);
             var viewModel = new TicketsListViewModel() {
                 Tickets = tickets,
                 ProjectName = _context.Projects.Single(p => p.Id == projectId).Name,

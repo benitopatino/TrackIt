@@ -10,8 +10,9 @@ namespace TrackIt
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/scripts/datatables/jquery.datatables.js",
-                         "~/scripts/datatables/datatables.bootstrap4.js"));
+                        "~/Scripts/bootstrap.js",
+                         "~/Scripts/datatables/datatables.bootstrap4.js",
+                         "~/Scripts/umd/popper.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -21,12 +22,9 @@ namespace TrackIt
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lux.css",
-                      "~/content/datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css"));
         }
     }

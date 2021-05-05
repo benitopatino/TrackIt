@@ -27,8 +27,7 @@ namespace TrackIt.Controllers
 
         // GET: Tickets
         // Cutom Route
-        [Route("projects/{projectId}/")]
-        public ActionResult Index(string projectId)
+        public ActionResult GetTicketsByProject(string projectId)
         {
             var tickets = _context.Tickets
                 .Include(t => t.Priority)

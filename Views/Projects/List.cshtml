@@ -23,7 +23,7 @@
     </div>
     <p class="lead text-center">
         
-        <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Tickets", new { projectId = project.Id})" role="button">Open Project</a>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("GetTicketsByProject", "Tickets", new { projectId = project.Id})" role="button">Open Project</a>
     </p>
 </div>
 }

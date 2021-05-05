@@ -15,7 +15,7 @@
             <th scope="col">Status</th>
             <th scope="col">Priority</th>
             <th scope="col">Ticket Type</th>
-
+            <th scope="col">Owner</th>
             <th scope="col">Due Date</th>
             <th scope="col">Date Created</th>
 
@@ -26,16 +26,17 @@
     <tbody>
         @foreach (var t in Model.Tickets)
         {
-            <tr>
-                <td>@t.Id</td>
-                <td>@t.Title</td>
-                <td>@t.Status.Name</td>
-                <td>@t.Priority.Name</td>
-                <td>@t.TicketType.Name</td>
-                <td>@t.DateDue.Value.ToString("MM-dd-yyyy")</td>
-                <td>@t.DateCreated.ToShortDateString()</td>
+        <tr>
+            <td>@t.Id</td>
+            <td>@t.Title</td>
+            <td>@t.Status.Name</td>
+            <td>@t.Priority.Name</td>
+            <td>@t.TicketType.Name</td>
+            <td>@(t.AssigneeId != null ? t.Assignee.Email : "")</td>
+            <td>@t.DateDue.Value.ToString("MM-dd-yyyy")</td>
+            <td>@t.DateCreated.ToShortDateString()</td>
 
-            </tr>
+        </tr>
         }
 
 
@@ -50,10 +51,6 @@
 
         $(document).ready(function () {
             $('#myTable').DataTable({
-                columnDefs: [
-                    { width: '5%', targets: 0 }
-                ],
-                fixedColumns: false
             });
         });
     </script>

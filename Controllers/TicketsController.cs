@@ -33,6 +33,7 @@ namespace TrackIt.Controllers
                 .Include(t => t.Priority)
                 .Include(t => t.Status)
                 .Include(t => t.TicketType)
+                .Include(t => t.Assignee)
                 .Where(t => t.ProjectId == projectId);
             var viewModel = new TicketsListViewModel() {
                 Tickets = tickets,

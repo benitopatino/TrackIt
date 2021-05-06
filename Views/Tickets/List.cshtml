@@ -23,7 +23,7 @@
     <tbody>
         @foreach (var t in Model.Tickets)
         {
-            <tr class="ticket-row">
+            <tr class="ticket-row" data-ticketid="@t.Id">
                 <td>@t.Id</td>
                 <td>@t.Title</td>
                 <td>@t.Status.Name</td>
@@ -48,6 +48,11 @@
 
         $(document).ready(function () {
             $('#myTable').DataTable({
+            });
+
+            $(".ticket-row").click(function () {
+                var ticketId = $(this).data("ticketid")
+                window.location = "/tickets/details/" + ticketId;
             });
         });
     </script>

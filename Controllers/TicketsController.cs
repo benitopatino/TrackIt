@@ -27,7 +27,6 @@ namespace TrackIt.Controllers
 
         // GET: Tickets
         // Cutom Route
-        [Route("tickets/project/{projectId}")]
         public ActionResult GetTicketsByProject(string projectId)
         {
             var tickets = _context.Tickets
@@ -43,6 +42,11 @@ namespace TrackIt.Controllers
             };
 
             return View("List",viewModel);
+        }
+
+        public ActionResult Edit(string id)
+        {
+            return Content("TICKET ID: " + id);
         }
 
        // POST: Ticket

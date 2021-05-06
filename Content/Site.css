@@ -37,3 +37,7 @@ textarea {
     text-align: left;
 }
 
+.ticket-row:hover  {
+    cursor:pointer;
+
+}

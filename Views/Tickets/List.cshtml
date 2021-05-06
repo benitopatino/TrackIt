@@ -18,25 +18,22 @@
             <th scope="col">Owner</th>
             <th scope="col">Due Date</th>
             <th scope="col">Date Created</th>
-
-
-
         </tr>
     </thead>
     <tbody>
         @foreach (var t in Model.Tickets)
         {
-        <tr>
-            <td>@t.Id</td>
-            <td>@t.Title</td>
-            <td>@t.Status.Name</td>
-            <td>@t.Priority.Name</td>
-            <td>@t.TicketType.Name</td>
-            <td>@(t.AssigneeId != null ? t.Assignee.Email : "")</td>
-            <td>@t.DateDue.Value.ToString("MM-dd-yyyy")</td>
-            <td>@t.DateCreated.ToShortDateString()</td>
+            <tr class="ticket-row">
+                <td>@t.Id</td>
+                <td>@t.Title</td>
+                <td>@t.Status.Name</td>
+                <td>@t.Priority.Name</td>
+                <td>@t.TicketType.Name</td>
+                <td>@(t.AssigneeId != null ? t.Assignee.Email : "")</td>
+                <td>@t.DateDue.Value.ToString("MM-dd-yyyy")</td>
+                <td>@t.DateCreated.ToShortDateString()</td>
 
-        </tr>
+            </tr>
         }
 
 

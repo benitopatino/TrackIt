@@ -448,6 +448,7 @@
     <Content Include="Views\Tickets\TicketsForm.cshtml" />
     <Content Include="Views\Projects\List.cshtml" />
     <Content Include="Views\Tickets\List.cshtml" />
+    <Content Include="Views\Tickets\TicketDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

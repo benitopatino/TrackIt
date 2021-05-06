@@ -44,7 +44,7 @@ namespace TrackIt.Controllers
             return View("List",viewModel);
         }
 
-        public ActionResult Edit(string id)
+        public ActionResult Details(string id)
         {
             return Content("TICKET ID: " + id);
         }

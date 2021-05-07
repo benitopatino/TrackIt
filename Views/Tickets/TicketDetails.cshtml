@@ -7,36 +7,107 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
-<div class="d-flex  mt-3 ">
-    <div class="flex-grow-1">
-        <h1 class="text-primary text-center">@Model.Title</h1>
-    </div>
+<div class="d-flex flex-row justify-content-between">
 
-    <div >
-        <button type="button" class="btn btn-info btn-sm">Edit <i class="far fa-edit"></i></button>
-    </div>
+    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = Model.ProjectId})'">Back to List</button>
+    <h2 style="">@Model.Title</h2>
+    <button type="button" class="btn btn-outline-info">Edit <i class="far fa-edit"></i></button>
+
+
 </div>
+<hr class="my-4">
 
+<div class="d-flex flex-row justify-content-between">
 
-
-
-
-
-<div class="d-flex justify-content-around mt-5">
-    <div>
-        <h4>Description</h4>
-        <p>@Model.Description</p>
+    <div class="d-flex flex-row pt-4">
+        <h5>Type: </h5>
+        <p class="pl-2">@Model.TicketType.Name</p>
     </div>
-
-    <div>
-        <h4>Status</h4>
-        <p>@Model.Status.Name</p>
+    <div class="d-flex flex-row pt-4">
+        <h5>Date Created: </h5>
+        <p class="pl-2">@Model.DateCreated.ToShortDateString()</p>
     </div>
-
-    <div>
-        <h4>Priority</h4>
-        <p>@Model.Priority.Name</p>
+    <div class="d-flex flex-row pt-4">
+        <h5>Date Due: </h5>
+        <p class="pl-2">@Model.DateDue.Value.ToString("MM-dd-yyyy")</p>
     </div>
 
 </div>
 
+<div class="d-flex flex-row justify-content-between">
+    
+    <div class="d-flex flex-row pt-4">
+        <h5>Priority: </h5>
+        <p id ="priority" class="pl-2 text-light"><span class="badge rounded-pill " data-priority=@Model.Priority.Name>@Model.Priority.Name</span></p>
+    </div>
+    <div class="d-flex flex-row pt-4">
+        <h5>Status: </h5>
+        <p class="pl-2">@Model.Status.Name</p>
+    </div>
+    <div class="d-flex flex-row pt-4">
+        <h5>Owner: </h5>
+        <p class="pl-2">@(Model.AssigneeId != null ? Model.Assignee.Email : "UNASSIGNED")</p>
+    </div>
+
+</div>
+
+
+
+<div class="d-flex flex-column mt-5">
+    <h5>Description: </h5>
+    <p>@Model.Description</p>
+</div>
+
+<div class="d-flex flex-column pt-4" style="border-top: 1px solid black">
+    <h4>Comments </h4>
+    <div class="jumbotron">
+        <div class="d-flex flex-row justify-content-between">
+            <p>Frank Johnson</p>
+            <p>10/10/2020 11:09:32 AM</p>
+        </div>
+        <hr class="my-3">
+        <div class="d-flex flex-row">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="d-flex flex-row justify-content-between">
+            <p>Thomas Jefferson</p>
+            <p>10/10/2020 11:09:32 AM</p>
+        </div>
+        <hr class="my-3">
+        <div class="d-flex flex-row">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+
+    <script>
+
+        // SET BADGE COLOR 
+        var badge = $(".badge");
+        var priority = badge.data("priority");
+
+        if (priority == "High") {
+            badge.addClass("bg-danger");
+        }
+
+        if (priority== "Normal") {
+            badge.addClass("bg-warning");
+        }
+
+        if (priority == "Low") {
+            badge.addClass("bg-info");
+        }
+
+        
+    </script>    
+    
+    
+    
+}

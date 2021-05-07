@@ -46,7 +46,16 @@ namespace TrackIt.Controllers
 
         public ActionResult Details(string id)
         {
-            return Content("TICKET ID: " + id);
+            var ticket = _context.Tickets
+                .Include(t => t.Priority)
+                .Include(t => t.Status)
+                .Include(t => t.TicketType)
+                .Include(t => t.Assignee)
+                .Include(t => t.Project)
+                .Include(t => t.Resolution)
+                .SingleOrDefault(t => t.Id == id);
+
+            return View("TicketDetails", ticket);
         }
 
        // POST: Ticket

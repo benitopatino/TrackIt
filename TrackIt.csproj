@@ -224,6 +224,10 @@
     <Compile Include="Migrations\202105080242376_AddFirstNamePropertyToIdentityUser.designer.cs">
       <DependentUpon>202105080242376_AddFirstNamePropertyToIdentityUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105080248297_AddLastNamePropertyToIdentityUser.cs" />
+    <Compile Include="Migrations\202105080248297_AddLastNamePropertyToIdentityUser.designer.cs">
+      <DependentUpon>202105080248297_AddLastNamePropertyToIdentityUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -493,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105080242376_AddFirstNamePropertyToIdentityUser.resx">
       <DependentUpon>202105080242376_AddFirstNamePropertyToIdentityUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105080248297_AddLastNamePropertyToIdentityUser.resx">
+      <DependentUpon>202105080248297_AddLastNamePropertyToIdentityUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

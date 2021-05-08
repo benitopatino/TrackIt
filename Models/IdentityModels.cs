@@ -14,6 +14,10 @@ namespace TrackIt.Models
         [StringLength(255)]
         public string FirstName { get; set; }
 
+        [Required(ErrorMessage = "Please Enter Last Name")]
+        [StringLength(255)]
+        public string LastName { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

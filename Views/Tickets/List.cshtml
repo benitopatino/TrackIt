@@ -23,13 +23,22 @@
     <tbody>
         @foreach (var t in Model.Tickets)
         {
+
+            string fullName = "";
+
+            if (t.Assignee != null) {
+                fullName = t.Assignee.FirstName + " " + t.Assignee.LastName;
+
+            }
+
+
             <tr class="ticket-row" data-ticketid="@t.Id">
                 <td>@t.Id</td>
                 <td>@t.Title</td>
                 <td>@t.Status.Name</td>
                 <td>@t.Priority.Name</td>
                 <td>@t.TicketType.Name</td>
-                <td>@(t.AssigneeId != null ? t.Assignee.Email : "")</td>
+                <td>@fullName</td>
                 <td>@t.DateDue.Value.ToString("MM-dd-yyyy")</td>
                 <td>@t.DateCreated.ToShortDateString()</td>
 

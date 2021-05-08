@@ -46,7 +46,14 @@
     </div>
     <div class="d-flex flex-row pt-4">
         <h5>Owner: </h5>
-        <p class="pl-2">@(Model.AssigneeId != null ? Model.Assignee.Email : "UNASSIGNED")</p>
+        @{ 
+            string fullName = "UNASSIGNED";
+            if(Model.Assignee != null)
+            {
+                fullName = Model.Assignee.FirstName + " " + Model.Assignee.LastName;
+            }
+        }
+        <p class="pl-2">@fullName</p>
     </div>
 
 </div>

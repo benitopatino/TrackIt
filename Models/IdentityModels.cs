@@ -36,6 +36,7 @@ namespace TrackIt.Models
         public DbSet<Status> Status { get; set; }
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Project> Projects{ get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
 
 

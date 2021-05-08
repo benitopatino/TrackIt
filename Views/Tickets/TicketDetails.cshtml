@@ -1,4 +1,4 @@
-﻿@model TrackIt.Models.Ticket
+﻿@model TrackIt.ViewModels.TicketDetailsViewModel
 
 @{
     ViewBag.Title = "TicketDetails";
@@ -9,8 +9,8 @@
 
 <div class="d-flex flex-row justify-content-between">
 
-    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = Model.ProjectId})'">Back to List</button>
-    <h2 style="">@Model.Title</h2>
+    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = Model.Ticket.ProjectId})'">Back to List</button>
+    <h2 style="">@Model.Ticket.Title</h2>
     <button type="button" class="btn btn-outline-info">Edit <i class="far fa-edit"></i></button>
 
 
@@ -21,15 +21,15 @@
 
     <div class="d-flex flex-row pt-4">
         <h5>Type: </h5>
-        <p class="pl-2">@Model.TicketType.Name</p>
+        <p class="pl-2">@Model.Ticket.TicketType.Name</p>
     </div>
     <div class="d-flex flex-row pt-4">
         <h5>Date Created: </h5>
-        <p class="pl-2">@Model.DateCreated.ToShortDateString()</p>
+        <p class="pl-2">@Model.Ticket.DateCreated.ToShortDateString()</p>
     </div>
     <div class="d-flex flex-row pt-4">
         <h5>Date Due: </h5>
-        <p class="pl-2">@Model.DateDue.Value.ToString("MM-dd-yyyy")</p>
+        <p class="pl-2">@Model.Ticket.DateDue.Value.ToString("MM-dd-yyyy")</p>
     </div>
 
 </div>
@@ -38,19 +38,19 @@
     
     <div class="d-flex flex-row pt-4">
         <h5>Priority: </h5>
-        <p id ="priority" class="pl-2 text-light"><span class="badge rounded-pill " data-priority=@Model.Priority.Name>@Model.Priority.Name</span></p>
+        <p id ="priority" class="pl-2 text-light"><span class="badge rounded-pill " data-priority=@Model.Ticket.Priority.Name>@Model.Ticket.Priority.Name</span></p>
     </div>
     <div class="d-flex flex-row pt-4">
         <h5>Status: </h5>
-        <p class="pl-2">@Model.Status.Name</p>
+        <p class="pl-2">@Model.Ticket.Status.Name</p>
     </div>
     <div class="d-flex flex-row pt-4">
         <h5>Owner: </h5>
         @{ 
             string fullName = "UNASSIGNED";
-            if(Model.Assignee != null)
+            if(Model.Ticket.Assignee != null)
             {
-                fullName = Model.Assignee.FirstName + " " + Model.Assignee.LastName;
+                fullName = Model.Ticket.Assignee.FirstName + " " + Model.Ticket.Assignee.LastName;
             }
         }
         <p class="pl-2">@fullName</p>
@@ -62,33 +62,57 @@
 
 <div class="d-flex flex-column mt-5">
     <h5>Description: </h5>
-    <p>@Model.Description</p>
+    <p>@Model.Ticket.Description</p>
 </div>
 
 <div class="d-flex flex-column pt-4" style="border-top: 1px solid black">
     <h4>Comments </h4>
-    <div class="jumbotron">
-        <div class="d-flex flex-row justify-content-between">
-            <p>Frank Johnson</p>
-            <p>10/10/2020 11:09:32 AM</p>
-        </div>
-        <hr class="my-3">
-        <div class="d-flex flex-row">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 
-        </div>
-    </div>
-    <div class="jumbotron">
-        <div class="d-flex flex-row justify-content-between">
-            <p>Thomas Jefferson</p>
-            <p>10/10/2020 11:09:32 AM</p>
-        </div>
-        <hr class="my-3">
-        <div class="d-flex flex-row">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    <!-- Comment Form-->
+    @using (Html.BeginForm("Save", "Comments"))
+    {
 
+        <div class="form-group">
+            @Html.TextAreaFor(c => c.Comment.Content, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Comment.Content)
         </div>
-    </div>
+
+        @Html.HiddenFor(c => c.Comment.Id)
+        @Html.HiddenFor(c => c.Comment.AuthorId)
+        @Html.HiddenFor(c => c.Comment.TicketId)
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Save</button>
+
+    }
+
+    @if (Model.TicketComments.Count() == 0)
+    {
+        <p>No Comments</p>
+    }
+    else
+    {
+
+        foreach (var comment in Model.TicketComments)
+        {
+            <div class="jumbotron">
+                <div class="d-flex flex-row justify-content-between">
+                    <p>@comment.Author.FirstName @comment.Author.LastName</p>
+                    <p>@comment.DateCreated.ToLongDateString()</p>
+                </div>
+                <hr class="my-3">
+                <div class="d-flex flex-row">
+                    <p>@comment.Content</p>
+                </div>
+            </div>
+        }
+
+
+    }
+
+
+
+
+
 </div>
 
 @section scripts{

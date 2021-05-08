@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TrackIt.ViewModels;
 using TrackIt.Models;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 
 namespace TrackIt.Controllers
@@ -46,6 +47,7 @@ namespace TrackIt.Controllers
 
         public ActionResult Details(string id)
         {
+            // Get current ticket
             var ticket = _context.Tickets
                 .Include(t => t.Priority)
                 .Include(t => t.Status)
@@ -55,7 +57,26 @@ namespace TrackIt.Controllers
                 .Include(t => t.Resolution)
                 .SingleOrDefault(t => t.Id == id);
 
-            return View("TicketDetails", ticket);
+            // Get Current User ID
+            string currentUserId = User.Identity.GetUserId<String>();
+            
+            // Get Current ticket id
+            string ticketId = id;
+
+            // Get all comments associated with this ticket
+            var ticketComments = _context.Comments
+                .Include(c => c.Author)
+                .Where(c => c.TicketId == ticketId);
+
+            var viewModel = new TicketDetailsViewModel()
+            {
+                Ticket = ticket,
+                Comment = new Comment(ticketId, currentUserId),
+                TicketComments = ticketComments
+            };
+
+
+            return View("TicketDetails", viewModel);
         }
 
        // POST: Ticket

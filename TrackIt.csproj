@@ -220,6 +220,10 @@
     <Compile Include="Migrations\202104300527552_AddedRequiredDataAnnotationToTicketsModel.designer.cs">
       <DependentUpon>202104300527552_AddedRequiredDataAnnotationToTicketsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105080242376_AddFirstNamePropertyToIdentityUser.cs" />
+    <Compile Include="Migrations\202105080242376_AddFirstNamePropertyToIdentityUser.designer.cs">
+      <DependentUpon>202105080242376_AddFirstNamePropertyToIdentityUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -486,6 +490,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104300527552_AddedRequiredDataAnnotationToTicketsModel.resx">
       <DependentUpon>202104300527552_AddedRequiredDataAnnotationToTicketsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105080242376_AddFirstNamePropertyToIdentityUser.resx">
+      <DependentUpon>202105080242376_AddFirstNamePropertyToIdentityUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

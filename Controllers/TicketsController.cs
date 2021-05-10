@@ -35,7 +35,7 @@ namespace TrackIt.Controllers
                 .Include(t => t.Status)
                 .Include(t => t.TicketType)
                 .Include(t => t.Assignee)
-                .Where(t => t.ProjectId == projectId);
+                .Where(t => t.ProjectId == projectId).ToList();
             var viewModel = new TicketsListViewModel() {
                 Tickets = tickets,
                 ProjectName = _context.Projects.Single(p => p.Id == projectId).Name,
@@ -66,7 +66,9 @@ namespace TrackIt.Controllers
             // Get all comments associated with this ticket
             var ticketComments = _context.Comments
                 .Include(c => c.Author)
-                .Where(c => c.TicketId == ticketId);
+                .Where(c => c.TicketId == ticketId).ToList();
+
+            
 
             var viewModel = new TicketDetailsViewModel()
             {

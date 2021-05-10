@@ -22,7 +22,7 @@ namespace TrackIt.Models
 
         public string Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter a comment")]
         public string Content { get; set; }
         public ApplicationUser Author { get; set; }
         public string  AuthorId { get; set; }

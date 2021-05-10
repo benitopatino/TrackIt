@@ -35,10 +35,10 @@
 </div>
 
 <div class="d-flex flex-row justify-content-between">
-    
+
     <div class="d-flex flex-row pt-4">
         <h5>Priority: </h5>
-        <p id ="priority" class="pl-2 text-light"><span class="badge rounded-pill " data-priority=@Model.Ticket.Priority.Name>@Model.Ticket.Priority.Name</span></p>
+        <p id="priority" class="pl-2 text-light"><span class="badge rounded-pill " data-priority=@Model.Ticket.Priority.Name>@Model.Ticket.Priority.Name</span></p>
     </div>
     <div class="d-flex flex-row pt-4">
         <h5>Status: </h5>
@@ -46,9 +46,9 @@
     </div>
     <div class="d-flex flex-row pt-4">
         <h5>Owner: </h5>
-        @{ 
+        @{
             string fullName = "UNASSIGNED";
-            if(Model.Ticket.Assignee != null)
+            if (Model.Ticket.Assignee != null)
             {
                 fullName = Model.Ticket.Assignee.FirstName + " " + Model.Ticket.Assignee.LastName;
             }
@@ -73,7 +73,7 @@
     {
 
         <div class="form-group">
-            @Html.TextAreaFor(c => c.Comment.Content, new { @class = "form-control" })
+            @Html.TextAreaFor(c => c.Comment.Content, new { @class = "form-control"})
             @Html.ValidationMessageFor(c => c.Comment.Content)
         </div>
 
@@ -81,7 +81,7 @@
         @Html.HiddenFor(c => c.Comment.AuthorId)
         @Html.HiddenFor(c => c.Comment.TicketId)
         @Html.AntiForgeryToken()
-        <button type="submit" class="btn btn-primary">Add Comment</button>
+        <button id="submit-comment" type="submit" class="btn btn-primary">Add Comment</button>
 
     }
 
@@ -120,7 +120,7 @@
 
     <script>
 
-        // SET BADGE COLOR 
+        // SET BADGE COLOR
         var badge = $(".badge");
         var priority = badge.data("priority");
 
@@ -128,7 +128,7 @@
             badge.addClass("bg-danger");
         }
 
-        if (priority== "Normal") {
+        if (priority == "Normal") {
             badge.addClass("bg-warning");
         }
 
@@ -136,9 +136,22 @@
             badge.addClass("bg-info");
         }
 
-        
-    </script>    
-    
-    
-    
+
+    </script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+        $("#submit-comment").click(function () {
+            
+            setTimeout(function () {
+                $("textarea").removeClass("input-validation-error");
+                $(".field-validation-error").removeClass("field-validation-error");
+                $("#Comment_Content-error").remove();
+            }, 5000);
+        })
+    </script>
+
 }

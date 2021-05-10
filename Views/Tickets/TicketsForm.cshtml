@@ -4,7 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+
+@{
+    if (ViewBag.Title == "Edit Ticket")
+    {
+        <h2>@ViewBag.Title : @Model.Ticket.Title</h2>
+    }
+    else
+    {
+        <h2>@ViewBag.Title</h2>
+    }
+}
+
+
 
 @using (Html.BeginForm("Save", "Tickets"))
 {

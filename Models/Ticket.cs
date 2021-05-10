@@ -33,7 +33,6 @@ namespace TrackIt.Models
         public byte StatusId { get; set; }
         
         public DateTime DateCreated { get; set; }
-        public DateTime? DateClosed { get; set; }
         public DateTime? DateDue { get; set; }
         public TicketType TicketType { get; set; }
 

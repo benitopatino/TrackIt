@@ -237,6 +237,10 @@
     <Compile Include="Migrations\202105080803214_AddRequiredAnnotationToCommentModel.designer.cs">
       <DependentUpon>202105080803214_AddRequiredAnnotationToCommentModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105102329292_RemovedDateClosedPropertyFromTicket.cs" />
+    <Compile Include="Migrations\202105102329292_RemovedDateClosedPropertyFromTicket.designer.cs">
+      <DependentUpon>202105102329292_RemovedDateClosedPropertyFromTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -519,6 +523,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105080803214_AddRequiredAnnotationToCommentModel.resx">
       <DependentUpon>202105080803214_AddRequiredAnnotationToCommentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105102329292_RemovedDateClosedPropertyFromTicket.resx">
+      <DependentUpon>202105102329292_RemovedDateClosedPropertyFromTicket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

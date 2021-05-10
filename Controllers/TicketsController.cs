@@ -81,8 +81,8 @@ namespace TrackIt.Controllers
             return View("TicketDetails", viewModel);
         }
 
-       // POST: Ticket
-       public ActionResult New()
+        // POST: Ticket
+        public ActionResult New()
         {
             var viewModel = new TicketFormViewModel()
             {
@@ -101,9 +101,41 @@ namespace TrackIt.Controllers
             return View("TicketsForm", viewModel);
         }
 
+
+        // EDIT
+        public ActionResult Edit(string id)
+        {
+            var ticket = _context.Tickets
+                .Include(t => t.Priority)
+                .Include(t => t.Status)
+                .Include(t => t.Resolution)
+                .Include(t => t.TicketType)
+                .Include(t => t.Assignee)
+                .SingleOrDefault(t => t.Id == id);
+
+            if (ticket == null)
+                return HttpNotFound();
+
+            var viewModel = new TicketFormViewModel()
+            {
+                Ticket = ticket,
+                TicketTypes = _context.TicketTypes.ToList(),
+                Resolutions = _context.Resolutions.ToList(),
+                Status = _context.Status.ToList(),
+                Priorities = _context.Priorities.ToList(),
+                Owners = _context.Users.ToList(),
+                Projects = _context.Projects.ToList()
+            };
+
+            ViewBag.Title = "Edit Ticket";
+            return View("TicketsForm", viewModel);
+
+
+        }
+
+
         public ActionResult Save(Ticket ticket)
         {
-
             // Return back to the TicketsForm if the model is invalid
             if (!ModelState.IsValid)
             {
@@ -146,8 +178,6 @@ namespace TrackIt.Controllers
                 ticketInDb.AssigneeId = ticket.AssigneeId;
                 ticketInDb.PriorityId = ticket.PriorityId;
                 ticketInDb.StatusId = ticket.StatusId;
-                ticketInDb.DateCreated = ticket.DateCreated;
-                ticketInDb.DateClosed = ticket.DateClosed;
                 ticketInDb.DateDue = ticket.DateDue;
                 ticketInDb.TicketTypeId = ticket.TicketTypeId;
                 ticketInDb.ResolutionId = ticket.ResolutionId;
@@ -155,7 +185,7 @@ namespace TrackIt.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Details", "Tickets", new { id = ticket.Id});
         }
         
 

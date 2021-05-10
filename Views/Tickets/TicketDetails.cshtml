@@ -11,7 +11,7 @@
 
     <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = Model.Ticket.ProjectId})'">Back to List</button>
     <h2 style="">@Model.Ticket.Title</h2>
-    <button type="button" class="btn btn-outline-info">Edit <i class="far fa-edit"></i></button>
+    <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Edit", "Tickets", new { id = Model.Ticket.Id})'">Edit <i class="far fa-edit"></i></button>
 
 
 </div>
@@ -50,7 +50,7 @@
             string fullName = "UNASSIGNED";
             if (Model.Ticket.Assignee != null)
             {
-                fullName = Model.Ticket.Assignee.FirstName + " " + Model.Ticket.Assignee.LastName;
+                fullName = Model.Ticket.Assignee.FullName;
             }
         }
         <p class="pl-2">@fullName</p>
@@ -96,7 +96,7 @@
         {
             <div class="jumbotron">
                 <div class="d-flex flex-row justify-content-between">
-                    <p>@comment.Author.FirstName @comment.Author.LastName</p>
+                    <p>@comment.Author.FullName <<a href="mailto:webmaster@example.com"><span class="text-muted">@comment.Author.Email</span></a>></p>
                     <p>@comment.DateCreated.ToLongDateString()</p>
                 </div>
                 <hr class="my-3">

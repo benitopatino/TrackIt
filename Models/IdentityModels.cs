@@ -18,6 +18,22 @@ namespace TrackIt.Models
         [StringLength(255)]
         public string LastName { get; set; }
 
+        public string FullName
+        {
+            get
+            {
+                return string.Format("{0} {1}", FirstName, LastName);
+            }
+        }
+
+        public string FullNameEmail
+        {
+            get
+            {
+                return string.Format("{0} {1} <{2}>", FirstName, LastName, Email);
+            }
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

@@ -1,0 +1,29 @@
+﻿@model TrackIt.ViewModels.ProjectFormViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Projects"))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Project.Name)
+        @Html.TextBoxFor(p => p.Project.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Project.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.Project.ProjectStatusId)
+        @Html.DropDownListFor(t => t.Project.ProjectStatusId, new SelectList(Model.ProjectStatus, "Id", "Name"), "Select Status", new { @class = "form-control" })
+        @Html.ValidationMessageFor(t => t.Project.ProjectStatusId)
+    </div>
+
+    @Html.HiddenFor(t => t.Project.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+
+
+}

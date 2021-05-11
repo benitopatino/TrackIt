@@ -5,7 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-lg-center">Projects</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+
+<div class="d-flex flex-row justify-content-between">
+    <h2>Projects</h2>
+    <button type="button" class="btn btn-outline-success" onclick="location.href='@Url.Action("New", "Projects")'">New Project <i class="fas fa-plus-circle"></i></button>
+</div>
+<hr class="my-4">
 
 @foreach (var project in Model.Projects)
 {
@@ -21,10 +28,12 @@
             <div><p>Resolved: @Model.TicketStats[project.Id]["Resolved"]</p></div>
         </div>
     </div>
-    <p class="lead text-center">
-        
-        <a class="btn btn-primary btn-lg" href="@Url.Action("GetTicketsByProject", "Tickets", new { projectId = project.Id})" role="button">Open Project</a>
-    </p>
+    <div class="d-flex flex-row justify-content-around">
+
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = project.Id})'">Open Project <i class="far fa-edit"></i></button>
+        <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("Edit", "Projects", new { id = project.Id})'">Edit <i class="far fa-edit"></i></button>
+    </div>
+
 </div>
 }
 

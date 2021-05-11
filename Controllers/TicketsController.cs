@@ -19,6 +19,7 @@ namespace TrackIt.Controllers
         public TicketsController()
         {
             _context = new ApplicationDbContext();
+            _context.ConfigureUsername(() => User.Identity.Name);
         }
 
         protected override void Dispose(bool disposing)
@@ -94,6 +95,8 @@ namespace TrackIt.Controllers
                 Owners = _context.Users.ToList(),
                 Projects = _context.Projects.ToList()
             };
+
+
 
             // Set View Title
             ViewBag.Title = "New Ticket";
@@ -188,6 +191,15 @@ namespace TrackIt.Controllers
             return RedirectToAction("Details", "Tickets", new { id = ticket.Id});
         }
         
+        public ActionResult History(string id)
+        {
+            //var auditLogs = _context.AuditLog.Include(d => d.LogDetails).Where(d => d.RecordId == id).ToList();
+            //var auditLogs = _context.GetLogs<Ticket>();
+            var auditLogs = _context.GetLogs<Ticket>(id).ToList();
+            var orderByDateLogs = auditLogs.OrderByDescending(t => t.EventDateUTC);
+            return View("TicketHistory", orderByDateLogs);
+        }
+
 
         private Dictionary<string, int> GetTicketsStatusCount(IEnumerable<Ticket> tickets)
         {

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
+using Audit.EntityFramework;
+using TrackerEnabledDbContext.Identity;
 
 namespace TrackIt.Models
 {
@@ -43,8 +45,10 @@ namespace TrackIt.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+
+    public class ApplicationDbContext : TrackerIdentityContext<ApplicationUser>
     {
+        
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<ProjectMember> ProjectMembers{ get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
@@ -57,8 +61,9 @@ namespace TrackIt.Models
 
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
+            
         }
 
         public static ApplicationDbContext Create()

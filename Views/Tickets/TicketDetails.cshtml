@@ -11,6 +11,7 @@
 
     <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = Model.Ticket.ProjectId})'">Back to List</button>
     <h2 style="">@Model.Ticket.Title</h2>
+    <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("History", "Tickets", new { id = Model.Ticket.Id})'">Ticket History <i class="far fa-edit"></i></button>
     <button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Edit", "Tickets", new { id = Model.Ticket.Id})'">Edit <i class="far fa-edit"></i></button>
 
 

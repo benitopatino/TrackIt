@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TrackerEnabledDbContext.Common.Models.AuditLog>
+@{
+    ViewBag.Title = "TicketHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ticket History</h2>
+
+@{
+    if (Model == null)
+    {
+        <p class="text-muted text-center">No History</p>
+    }
+    else
+    {
+        <table class="table table-bordered">
+           
+            @foreach (var a in Model)
+            {
+                <tr class="table-info">
+                    <td colspan="2">Event Date: @a.EventDateUTC</td>
+                    <td>User: @a.UserName</td>
+                </tr>
+                <tr class="thead-light">
+                    <th class="text-danger">Property</th>
+                    <th class="text-danger">Old Value</th>
+                    <th class="text-danger">New Value</th>
+                </tr>
+                foreach (var b in a.LogDetails)
+                {
+                    <tr>
+                        <td class="font-weight-bold">@b.PropertyName</td>
+                        <td>@b.OriginalValue</td>
+                        <td>@b.NewValue</td>
+
+                    </tr>
+                }
+            }
+
+        </table>
+
+    }
+}
+
+
+
+

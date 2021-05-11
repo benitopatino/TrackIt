@@ -6,6 +6,7 @@ using System.Web;
 
 namespace TrackIt.Models
 {
+    [TrackChanges]
     public class Ticket
     {
         public string Id { get; set; }

@@ -55,3 +55,8 @@ textarea {
 .validation-summary-errors {
     color: red;
 } 
+
+/*Landing PAge*/
+.landing-body {
+    background-color: #f2f2f2
+}

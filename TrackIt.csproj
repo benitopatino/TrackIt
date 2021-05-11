@@ -566,6 +566,8 @@
     <Content Include="Views\Tickets\List.cshtml" />
     <Content Include="Views\Tickets\TicketDetails.cshtml" />
     <Content Include="Views\Tickets\TicketHistory.cshtml" />
+    <Content Include="Views\Shared\_NoNavLayout.cshtml" />
+    <Content Include="Views\Home\LandingPageLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Comments\" />

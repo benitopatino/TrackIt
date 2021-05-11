@@ -10,7 +10,8 @@ namespace TrackIt.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+
+           return  RedirectToAction("Index", "Projects");
         }
 
         public ActionResult About()

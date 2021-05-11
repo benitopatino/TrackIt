@@ -3,8 +3,16 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
-<h2>@Model.ProjectName</h2>
+
+<div class="d-flex flex-row justify-content-between">
+    <h2>@Model.ProjectName</h2>
+    <button type="button" class="btn btn-outline-success" onclick="location.href='@Url.Action("New", "Tickets")'">New Ticket <i class="fas fa-plus-circle"></i></button>
+</div>
+<hr class="my-4">
+
+
 
 
 <table id="myTable" class="table table-hover nowrap">
@@ -26,7 +34,8 @@
 
             string fullName = "";
 
-            if (t.Assignee != null) {
+            if (t.Assignee != null)
+            {
                 fullName = t.Assignee.FirstName + " " + t.Assignee.LastName;
 
             }

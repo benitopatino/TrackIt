@@ -60,3 +60,13 @@ textarea {
 .landing-body {
     background-color: #f2f2f2
 }
+
+
+/*Drop Down Account Menu*/
+a.nav-link.dropdown-toggle {
+    padding: 0;
+}
+
+ul.nav.nav-tabs {
+    border: none;
+}

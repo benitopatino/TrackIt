@@ -7,8 +7,9 @@
 
 
 <div class="d-flex flex-row justify-content-between">
-    <h2>@Model.ProjectName</h2>
-    <button type="button" class="btn btn-outline-success" onclick="location.href='@Url.Action("New", "Tickets")'">New Ticket <i class="fas fa-plus-circle"></i></button>
+    <button type="button" class="btn btn-dark btn-sm" onclick="location.href='@Url.Action("Index", "Projects")'"> <i class="fas fa-arrow-left"></i> Back To Projects</button>
+    <h2 class="text-muted">@Model.ProjectName</h2>
+    <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("New", "Tickets")'">New Ticket <i class="fas fa-plus-circle"></i></button>
 </div>
 <hr class="my-4">
 

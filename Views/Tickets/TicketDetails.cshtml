@@ -9,15 +9,15 @@
 
 <div class="d-flex flex-row justify-content-between">
 
-    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = Model.Ticket.ProjectId})'">Back to List</button>
-    <h2 style="">@Model.Ticket.Title</h2>
-    
-    <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("Edit", "Tickets", new { id = Model.Ticket.Id})'">Edit <i class="far fa-edit"></i></button>
+    <button type="button" class="btn btn-dark btn-sm" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = Model.Ticket.ProjectId})'"> <i class="fas fa-arrow-left"></i> Back To Tickets</button>
+    <h3 class="text-center ">@Model.Ticket.Title</h3>
+
+    <button type="button" class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Edit", "Tickets", new { id = Model.Ticket.Id})'">Edit <i class="far fa-edit"></i></button>
 
 
 </div>
 <hr class="my-4">
-<button type="button" class="btn btn-outline-info " onclick="location.href='@Url.Action("History", "Tickets", new { id = Model.Ticket.Id})'">Ticket History <i class="fas fa-history"></i></button>
+<button type="button" class="btn btn-outline-info btn-sm " onclick="location.href='@Url.Action("History", "Tickets", new { id = Model.Ticket.Id})'">Ticket History <i class="fas fa-history"></i></button>
 <div class="d-flex flex-row justify-content-between">
 
     <div class="d-flex flex-row pt-4">

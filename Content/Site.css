@@ -70,3 +70,11 @@ a.nav-link.dropdown-toggle {
 ul.nav.nav-tabs {
     border: none;
 }
+
+#ticket-status {
+    font-weight:900;
+}
+
+.card {
+    box-shadow: 2px 3px 8px black;
+}

@@ -13,26 +13,36 @@
 </div>
 <hr class="my-4">
 
-@foreach (var project in Model.Projects)
-{
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h2 class="text-center text-muted">@project.Name</h2>
+<div class="d-flex flex-column">
 
-        <h6>Status: <small>@project.ProjectStatus.Name</small></h6>
-        <div class="d-flex justify-content-around">
-            <div><p>Open: @Model.TicketStats[project.Id]["Open"]</p> </div>
-            <div><p>In Progress: @Model.TicketStats[project.Id]["In Progress"]</p> </div>
-            <div><p>Closed: @Model.TicketStats[project.Id]["Closed"]</p> </div>
-            <div><p>Resolved: @Model.TicketStats[project.Id]["Resolved"]</p></div>
+    @foreach (var project in Model.Projects)
+    {
+
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <p><span id="ticket-status">Status: </span>@project.ProjectStatus.Name</p>
+
+                    <h5 class="card-title text-center">@project.Name</h5>
+                    <button type="button" class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Edit", "Projects", new { id = project.Id})'">Edit <i class="far fa-edit"></i></button>
+
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div><p>Open: @Model.TicketStats[project.Id]["Open"]</p> </div>
+                    <div><p>In Progress: @Model.TicketStats[project.Id]["In Progress"]</p> </div>
+                    <div><p>Closed: @Model.TicketStats[project.Id]["Closed"]</p> </div>
+                    <div><p>Resolved: @Model.TicketStats[project.Id]["Resolved"]</p></div>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = project.Id})'">Open Project <i class="far fa-folder-open"></i> </button>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="d-flex flex-row justify-content-around">
 
-        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("GetTicketsByProject", "Tickets", new { projectId = project.Id})'">Open Project <i class="far fa-folder-open"></i> </button>
-        <button type="button" class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Edit", "Projects", new { id = project.Id})'">Edit <i class="far fa-edit"></i></button>
-    </div>
-
+        <br />
+    }
 </div>
-}
+
+
+
 

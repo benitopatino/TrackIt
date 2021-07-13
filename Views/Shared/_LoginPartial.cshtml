@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@using TrackIt.Models
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,7 +9,7 @@
 
         <ul class="nav nav-tabs">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName()</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetFullName()</a>
                 <div class="dropdown-menu">
                     @Html.ActionLink( "Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="dropdown-item" })
                     <div class="dropdown-divider"></div>

@@ -1,4 +1,4 @@
-﻿using System;
+﻿  using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -193,10 +193,10 @@ namespace TrackIt.Controllers
         
         public ActionResult History(string id)
         {
-            //var auditLogs = _context.AuditLog.Include(d => d.LogDetails).Where(d => d.RecordId == id).ToList();
-            //var auditLogs = _context.GetLogs<Ticket>();
+            // Get all the logs for a specific Ticket
             var auditLogs = _context.GetLogs<Ticket>(id).ToList();
             var orderByDateLogs = auditLogs.OrderByDescending(t => t.EventDateUTC);
+
             return View("TicketHistory", orderByDateLogs);
         }
 

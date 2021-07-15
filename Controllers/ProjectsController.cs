@@ -38,7 +38,10 @@ namespace TrackIt.Controllers
 
             };
 
-            return View("List", viewModel);
+            if(User.IsInRole("ProjectManager"))
+                return View("List", viewModel);
+
+            return View("ReadOnlyList", viewModel);
         }
 
         public ActionResult New()

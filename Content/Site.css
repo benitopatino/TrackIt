@@ -78,3 +78,8 @@ ul.nav.nav-tabs {
 .card {
     box-shadow: 2px 3px 8px black;
 }
+
+.disable-card {
+    pointer-events:none;
+    opacity:0.7;
+}

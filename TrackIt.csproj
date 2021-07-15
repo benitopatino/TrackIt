@@ -339,6 +339,10 @@
     <Compile Include="Migrations\202105111721424_AddRequiredAnnotationsToProjetStatusAndProjectName.designer.cs">
       <DependentUpon>202105111721424_AddRequiredAnnotationsToProjetStatusAndProjectName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107150447013_CreateAndSeedProjectManagerUser.cs" />
+    <Compile Include="Migrations\202107150447013_CreateAndSeedProjectManagerUser.designer.cs">
+      <DependentUpon>202107150447013_CreateAndSeedProjectManagerUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -577,6 +581,7 @@
     <Content Include="Views\Shared\_NoNavLayout.cshtml" />
     <Content Include="Views\Home\LandingPageLogin.cshtml" />
     <Content Include="Views\Projects\ProjectsForm.cshtml" />
+    <Content Include="Views\Projects\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Comments\" />
@@ -637,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105111721424_AddRequiredAnnotationsToProjetStatusAndProjectName.resx">
       <DependentUpon>202105111721424_AddRequiredAnnotationsToProjetStatusAndProjectName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107150447013_CreateAndSeedProjectManagerUser.resx">
+      <DependentUpon>202107150447013_CreateAndSeedProjectManagerUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

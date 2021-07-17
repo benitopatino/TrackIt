@@ -1,4 +1,5 @@
 ﻿@model TrackIt.ViewModels.ProjectListViewModel
+@using TrackIt.Models; 
 
 @{
     ViewBag.Title = "List";
@@ -17,33 +18,18 @@
 
     @foreach (var project in Model.Projects)
     {
-       if (project.ProjectStatus.Name.Equals("On Hold") || project.ProjectStatus.Name.Equals("Completed"))
+        string cardClass;
+        if (project.ProjectStatus.Name.Equals(Utilities.ProjectStatus.Completed) || project.ProjectStatus.Name.Equals(Utilities.ProjectStatus.OnHold))
         {
-            <div class="card disable-card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-3">
-                        <p><span id="ticket-status">Status: </span>@project.ProjectStatus.Name</p>
-
-                        <h5 class="card-title text-center">@project.Name</h5>
-                         <button type="button" class="btn btn-warning btn-sm">Edit <i class="far fa-edit"></i></button>
-
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div><p>Open: @Model.TicketStats[project.Id]["Open"]</p> </div>
-                        <div><p>In Progress: @Model.TicketStats[project.Id]["In Progress"]</p> </div>
-                        <div><p>Closed: @Model.TicketStats[project.Id]["Closed"]</p> </div>
-                        <div><p>Resolved: @Model.TicketStats[project.Id]["Resolved"]</p></div>
-                    </div>
-                    <div class="d-flex justify-content-around">
-                        <button type="button" class="btn btn-primary">Open Project <i class="far fa-folder-open"></i> </button>
-                    </div>
-                </div>
-            </div>
+            cardClass = "card disable-card";
         }
         else
         {
+            cardClass = "card";
 
-            <div class="card">
+        }
+
+            <div class="@cardClass" >
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
                         <p><span id="ticket-status">Status: </span>@project.ProjectStatus.Name</p>
@@ -63,10 +49,6 @@
                     </div>
                 </div>
             </div>
-
-        }
-
-
 
         <br />
     }

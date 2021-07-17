@@ -80,6 +80,5 @@ ul.nav.nav-tabs {
 }
 
 .disable-card {
-    pointer-events:none;
     opacity:0.7;
 }

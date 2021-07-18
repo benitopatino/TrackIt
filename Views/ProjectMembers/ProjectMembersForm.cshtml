@@ -1,0 +1,47 @@
+﻿@model TrackIt.ViewModels.ProjectMembersFormViewModel
+@{
+    ViewBag.Title = "ProjectMembersForm";
+}
+<h2 class="display-4">@Model.Project.Name</h2>
+@if (Model.ProjectMembers.ToList().Count > 0)
+{
+
+    <h5>Current Memebers</h5>
+    <br />
+
+    <ul class="list-group">
+        @foreach (var member in Model.ProjectMembers)
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <p>@member.Member.FirstName @member.Member.LastName</p>
+
+
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "ProjectMembers", new { projectMemberId = member.Id, projectId = @member.ProjectId})'">Remove</button>
+            </li>
+            <br />
+        }
+    </ul>
+}
+
+
+
+@if (Model.Users.ToList().Count > 0)
+{
+    <h5>Add Members</h5>
+    <br />
+
+    using (Html.BeginForm("Save", "ProjectMembers"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(p => p.ProjectMember.MemberId)
+            @Html.DropDownListFor(p => p.ProjectMember.MemberId, new SelectList(Model.Users, "Id", "FirstName", "LastName"), "Select Members", new { @class = "form-control" })
+            @Html.ValidationMessageFor(p => p.ProjectMember.MemberId)
+        </div>
+
+        @Html.HiddenFor(p => p.ProjectMember.Id)
+        @Html.HiddenFor(p => p.ProjectMember.ProjectId)
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Add Member</button>
+    }
+}
+

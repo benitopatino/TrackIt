@@ -16,5 +16,12 @@ namespace TrackIt.Models
             public static string New = "New";
         }
 
+        public static class UserRoles
+        {
+            public static string ProjectManager = "ProjectManager";
+        }
+
+
+
     }
 }

@@ -266,6 +266,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectMembersController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -362,6 +363,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ProjectFormViewModel.cs" />
     <Compile Include="ViewModels\ProjectListViewModel.cs" />
+    <Compile Include="ViewModels\ProjectMembersFormViewModel.cs" />
     <Compile Include="ViewModels\TicketDetailsViewModel.cs" />
     <Compile Include="ViewModels\TicketFormViewModel.cs" />
     <Compile Include="ViewModels\TicketsListViewModel.cs" />
@@ -583,6 +585,7 @@
     <Content Include="Views\Home\LandingPageLogin.cshtml" />
     <Content Include="Views\Projects\ProjectsForm.cshtml" />
     <Content Include="Views\Projects\ReadOnlyList.cshtml" />
+    <Content Include="Views\ProjectMembers\ProjectMembersForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Comments\" />

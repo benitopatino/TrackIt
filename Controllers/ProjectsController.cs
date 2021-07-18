@@ -56,6 +56,7 @@ namespace TrackIt.Controllers
             return View("ProjectsForm", viewModel);
         }
 
+
         public ActionResult Edit(string id)
         {
             var project = _context.Projects

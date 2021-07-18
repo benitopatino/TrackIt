@@ -47,6 +47,7 @@ namespace TrackIt.Models
 
             // Add custom user claims here
             userIdentity.AddClaim(new Claim("FullName", this.FullName));
+
             return userIdentity;
         }
 

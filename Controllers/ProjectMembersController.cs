@@ -43,7 +43,7 @@ namespace TrackIt.Controllers
                 .Where(m => m.ProjectId.Equals(projectId)).ToList();
 
             // All Users
-            var users = _context.Users.ToList();
+            var users = _context.Users.ToList().Where(u => u.Roles.Count < 1);
 
             var usersNotAssigned = users.Where(u => projectMembers.All(p2 => p2.MemberId != u.Id));
 

@@ -14,10 +14,11 @@
 <hr class="my-4">
 
 
-<div class="d-flex flex-column" ">
+<div class="d-flex flex-column" >
     @foreach (var project in Model.Projects)
     {
         // Show Projects that are NOT OnHold or NOT Completed
+        // Show Projects that are assigned to them
         if (!project.ProjectStatus.Name.Equals(Utilities.ProjectStatus.OnHold) && !project.ProjectStatus.Name.Equals(Utilities.ProjectStatus.Completed))
         {
             <div class="card">

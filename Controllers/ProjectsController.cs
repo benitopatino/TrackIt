@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using TrackIt.Models;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
+
 using TrackIt.ViewModels;
 
 namespace TrackIt.Controllers
@@ -29,7 +31,28 @@ namespace TrackIt.Controllers
         public ActionResult Index()
         {
 
-            var projects = _context.Projects.Include(s => s.ProjectStatus).ToList();
+            var projectsList = _context.Projects.Include(s => s.ProjectStatus).ToList();
+            string userId = User.Identity.GetUserId();
+
+            var projectMembers = _context.ProjectMembers.Where(p => p.MemberId.Equals(userId)); 
+
+            List<Project> projects = new List<Project>();
+
+            // Remove view of projects that are not assigned to non ProjectManagers
+            if(!User.IsInRole("ProjectManager"))
+            {
+
+                foreach(var m in projectMembers)
+                {
+                    var project = projectsList.FirstOrDefault(p => p.Id.Equals(m.ProjectId));
+                    if (project != null)
+                        projects.Add(project);
+                }
+            }
+            else
+            {
+                projects = projectsList;
+            }
 
             var viewModel = new ProjectListViewModel()
             {

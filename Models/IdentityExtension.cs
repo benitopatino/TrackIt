@@ -16,6 +16,7 @@ namespace TrackIt.Models
 
                 return (claim != null) ? claim.Value : string.Empty;
             }
-       
+
+
     }
 }

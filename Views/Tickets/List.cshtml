@@ -34,10 +34,18 @@
         {
 
             string fullName = "";
+            string dateDue = "";
 
             if (t.Assignee != null)
             {
                 fullName = t.Assignee.FirstName + " " + t.Assignee.LastName;
+
+            }
+
+            // check for date due value
+            if (t.DateDue.HasValue)
+            {
+                dateDue = t.DateDue.Value.ToString("MM-dd-yyyy");
 
             }
 
@@ -49,7 +57,9 @@
                 <td>@t.Priority.Name</td>
                 <td>@t.TicketType.Name</td>
                 <td>@fullName</td>
-                <td>@t.DateDue.Value.ToString("MM-dd-yyyy")</td>
+                <td>
+                    @dateDue
+                </td>
                 <td>@t.DateCreated.ToShortDateString()</td>
 
             </tr>
